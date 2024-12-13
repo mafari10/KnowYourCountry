@@ -51,7 +51,7 @@ app.post("/add", async (req, res) => {
   // select country code by condition
   try {
     const dbQueryCountryCode = await db.query(
-      "SELECT country_code FROM countries WHERE country_name = $1",
+      "SELECT country_code FROM countries WHERE country_name LIKE '%' || $1 ||'%';",
       [country]
     );
     const countryCode = dbQueryCountryCode.rows[0].country_code;
